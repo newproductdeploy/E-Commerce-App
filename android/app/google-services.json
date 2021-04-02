@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "120598991832",
+    "project_id": "ballariapp",
+    "storage_bucket": "ballariapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120598991832:android:a7ae07dddebec4d9bad8ad",
+        "android_client_info": {
+          "package_name": "com.example.ballariapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120598991832-ju3nhjd2m0pjhdbomqnbmspo94jhl68k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdhg82JtBZ0Z7jHatiAhfHrKcyyIzA2uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120598991832-ju3nhjd2m0pjhdbomqnbmspo94jhl68k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120598991832:android:c9bdbe42f06c3c1fbad8ad",
+        "android_client_info": {
+          "package_name": "com.example.newballariapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120598991832-ju3nhjd2m0pjhdbomqnbmspo94jhl68k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdhg82JtBZ0Z7jHatiAhfHrKcyyIzA2uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120598991832-ju3nhjd2m0pjhdbomqnbmspo94jhl68k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
