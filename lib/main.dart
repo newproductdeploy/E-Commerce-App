@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newballariapp/customerlogin.dart';
-import 'package:newballariapp/deliverylogin.dart';
+import 'package:newballariapp/authdelivery.dart';
+import 'package:newballariapp/number.dart';
 import 'package:newballariapp/sellerlogin.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   }
 }
 class MyHomePage extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +58,7 @@ class MyHomePage extends StatelessWidget {
                style: ElevatedButton.styleFrom(primary: Colors.green,onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)))),
                onPressed: () {
                  Navigator.push(context,MaterialPageRoute(
-                   builder: (context) => CustomerLogin()),
+                   builder: (context) => NumberPage()),
              );
              },
              onLongPress: (){
@@ -80,7 +81,7 @@ class MyHomePage extends StatelessWidget {
                style: ElevatedButton.styleFrom(primary: Colors.green,onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)))),
                onPressed: () {
                  Navigator.push(context,MaterialPageRoute(
-                   builder: (context) => DeliveryLogin()),
+                   builder: (context) => AuthDelivery()),
              );
              },
              onLongPress: (){

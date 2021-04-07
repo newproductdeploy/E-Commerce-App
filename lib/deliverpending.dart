@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-class UserInformation extends StatefulWidget {
-
-   String mobileno2;
-   UserInformation({this.mobileno2});
-
+class DeliveryPending extends StatefulWidget {
   @override
-  _UserInformationState createState() => _UserInformationState(mobileno2);
+  _DeliveryPendingState createState() => _DeliveryPendingState();
 }
 
-class _UserInformationState extends State<UserInformation> {
+class _DeliveryPendingState extends State<DeliveryPending> {
 
-  String mobileno2;
-  _UserInformationState(this.mobileno2);
-  
+  CollectionReference referDatabase = FirebaseFirestore.instance.collection('appusers');
+
+  DocumentReference documentReference = FirebaseFirestore.instance.collection('appusers').doc('deliveryboy').collection('orders').doc();
+
   User user;
   Future<void> getUserData() async{
     User userdata = await FirebaseAuth.instance.currentUser;
@@ -25,18 +21,33 @@ class _UserInformationState extends State<UserInformation> {
         });
   }
 
+Future<void> get_docId(DocumentReference documentReference) async{
+  DocumentSnapshot documentSnapshot  = await documentReference.get();
+  var docid = documentSnapshot.id;
+  print(docid);
+  return docid;
+}
 
   @override
   void initState(){
     super.initState();
     getUserData();
   }
-  
+
+String textHolder = 'Pending';
+
+changeText() {
+ 
+    setState(() {
+     textHolder = 'Delivered'; 
+    });
+    
+  }
+
   
   @override
   Widget build(BuildContext context) {
-    
-  final Query users = FirebaseFirestore.instance.collection('appusers').doc('customers').collection(mobileno2).orderBy('Timestamp',descending: true);
+    final Query users = FirebaseFirestore.instance.collection('appusers').doc('deliveryboy').collection('orders').orderBy('Timestamp',descending: true);
     
     return Scaffold(
       appBar: AppBar(
@@ -57,20 +68,25 @@ class _UserInformationState extends State<UserInformation> {
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
             return Container(
-              height: 200,
+              height: 270,
               child: new Card(
               child: Column(
               children : <Widget>[
               new ListTile(
-                leading: new Icon(Icons.shopping_cart),
-                title: new Text(document.data()['Shopname']),
-                subtitle: new Text(document.data()['Items']),
+                leading: new Icon(Icons.verified_user),
+                title: new Text(document.data()['Username']),
               ),
               new Divider(color: Colors.green[900],indent: 20.0,endIndent: 20.0),
               new ListTile(
                 leading: new Icon(Icons.phone),
                 title: new Text(document.data()['Address']),
                 subtitle: new Text(document.data()['Mobile No']),
+              ),
+                new Divider(color: Colors.green[900],indent: 20.0,endIndent: 20.0),
+                new ListTile(
+                leading: new Icon(Icons.shopping_cart),
+                title: new Text(document.data()['Shopname']),
+                subtitle: new Text(document.data()['Items']),
               ),
               ],
               ),

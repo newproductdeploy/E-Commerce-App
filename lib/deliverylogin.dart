@@ -8,6 +8,8 @@ class DeliveryLogin extends StatefulWidget {
 }
 
 class _DeliveryLoginState extends State<DeliveryLogin> {
+  
+  
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   
   void validate(){
@@ -34,20 +36,6 @@ class _DeliveryLoginState extends State<DeliveryLogin> {
 
   String _email;
   String _password;
-
-  Future<String> _createUser() async {
-  try {
-  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-    email: _email,
-    password: _password);
-} on FirebaseAuthException catch (e) {
-  if (e.message == 'The email address is already in use by another account') {
-    return 'Mail-ID Exists';
-  }
-} catch (e) {
-  print(e);
-}
-}
 
 
   // ignore: missing_return
@@ -125,11 +113,11 @@ class _DeliveryLoginState extends State<DeliveryLogin> {
                mainAxisAlignment: MainAxisAlignment.center,
                children :[
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(13.0),
               child: ElevatedButton(
                    child: Text('Login',
                    style: TextStyle(
-                     fontSize: 25,
+                     fontSize: 23,
                    ),
                    ),
                    style: ElevatedButton.styleFrom(primary: Colors.green,onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)))),
@@ -138,20 +126,6 @@ class _DeliveryLoginState extends State<DeliveryLogin> {
                  }, 
                 ),
             ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                   child: Text('Register',
-                   style: TextStyle(
-                     fontSize: 25,
-                   ),
-                   ),
-                   style: ElevatedButton.styleFrom(primary: Colors.green,onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)))),
-                   onPressed: () {
-                    _createUser();
-                 }, 
-                ),
-              ),
                ],
              ),
            ),

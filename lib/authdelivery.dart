@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:newballariapp/deliverylogin.dart';
-import 'package:newballariapp/orderpage.dart';
+import 'package:newballariapp/pusddata.dart';
 
 class AuthDelivery extends StatefulWidget {
   @override
@@ -10,11 +10,15 @@ class AuthDelivery extends StatefulWidget {
 }
 
 class _AuthDeliveryState extends State<AuthDelivery> {
+
+ int neww  = 0;
+
   @override
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
+    if ( neww == 0){
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -26,16 +30,16 @@ class _AuthDeliveryState extends State<AuthDelivery> {
                   User user = snapshot.data;
                   
                   if (user == null) {
+                    neww+=1;
                     return DeliveryLogin();
 
                   } else {
-                      return OrderPage();
-                    
-                    }
+                      return DeliveryChecking();
+                  }
                 }
                   return Scaffold(
             body: Center(
-              child: Text("Checking Authentication",
+              child: Text("Checking",
               style: TextStyle(
                 fontSize: 30,
                 ),
@@ -47,7 +51,7 @@ class _AuthDeliveryState extends State<AuthDelivery> {
         }
           return Scaffold(
             body: Center(
-              child: Text("waitUntilConnecting",
+              child: Text("Connecting",
               style: TextStyle(
                 fontSize: 30,
                 ),
@@ -56,5 +60,6 @@ class _AuthDeliveryState extends State<AuthDelivery> {
           );
       },
     );
+    }
   }
 }
