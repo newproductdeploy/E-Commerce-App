@@ -19,6 +19,13 @@ class _DeliveryCheckingState extends State<DeliveryChecking> {
       ),
       
       body: Container(
+        constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("appimage.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
         child:Column(
          mainAxisSize: MainAxisSize.min,
          children: [Center(
@@ -42,7 +49,7 @@ class _DeliveryCheckingState extends State<DeliveryChecking> {
                  fontSize: 24,
                ),
                ),
-               style: ElevatedButton.styleFrom(primary: Colors.green[600],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+               style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
                onPressed: () {
                 Navigator.push(context,MaterialPageRoute(
                    builder: (context) =>DeliveryPending()),
@@ -59,7 +66,7 @@ class _DeliveryCheckingState extends State<DeliveryChecking> {
                child: Text('logout',
                style:TextStyle(fontSize: 23),
                ),
-                style: ElevatedButton.styleFrom(primary: Colors.green[600],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+                style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
              onPressed: ()  async{
                    await FirebaseAuth.instance.signOut();
                   },

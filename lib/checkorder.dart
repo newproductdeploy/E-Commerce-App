@@ -43,45 +43,58 @@ class _UserInformationState extends State<UserInformation> {
         title: Text('#1'),
       ),
       //heading or project name should be written
-      body: StreamBuilder(
-      stream: users.snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text('Something went wrong');
-        }
-
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
-        }
-
-        return new ListView(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
-            return Container(
-              height: 200,
-              child: new Card(
-              child: Column(
-              children : <Widget>[
-              new ListTile(
-                leading: new Icon(Icons.shopping_cart),
-                title: new Text(document.data()['Shopname']),
-                subtitle: new Text(document.data()['Items']),
-              ),
-              new Divider(color: Colors.green[900],indent: 20.0,endIndent: 20.0),
-              new ListTile(
-                leading: new Icon(Icons.phone),
-                title: new Text(document.data()['Address']),
-                subtitle: new Text(document.data()['Mobile No']),
-              ),
-              ],
-              ),
-              elevation: 5,
-              margin: EdgeInsets.all(17),
+      body: Container(
+        constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("appimage.png"),
+              fit: BoxFit.cover,
             ),
-            );
-          }).toList(),
-        );
-      },
+          ),
+        child: StreamBuilder(
+        stream: users.snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+
+          return new ListView(
+            children: snapshot.data.docs.map((DocumentSnapshot document) {
+              return Container(
+                height: 300,
+                child: new Card(
+                  shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      color: Colors.grey[300],
+                child: Column(
+                children : <Widget>[
+                new ListTile(
+                  leading: new Icon(Icons.date_range),
+                  title: new Text(document.data()['OrderedDate'],
+                  style: TextStyle(color: Colors.white),),
+                tileColor: Colors.grey[700],
+                ),
+                new ListTile(
+                  leading: new Icon(Icons.shopping_cart),
+                  title: new Text(document.data()['Shopname']),
+                  subtitle: new Text(document.data()['Items']),
+                ),
+                ],
+                ),
+                elevation: 5,
+                margin: EdgeInsets.all(17),
+              ),
+              );
+            }).toList(),
+          );
+        },
     ),
+      ),
     );
   }
 }

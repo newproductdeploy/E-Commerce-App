@@ -57,10 +57,18 @@ class _DeliveryLoginState extends State<DeliveryLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('#1'),
       ),
       body: Container(
+        constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("appimage.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
         child : Form(
         autovalidateMode: AutovalidateMode.always, key : formkey,
         child:Column(
@@ -120,7 +128,7 @@ class _DeliveryLoginState extends State<DeliveryLogin> {
                      fontSize: 23,
                    ),
                    ),
-                   style: ElevatedButton.styleFrom(primary: Colors.green,onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)))),
+                   style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)))),
                    onPressed: () {
                     _login();
                  }, 
