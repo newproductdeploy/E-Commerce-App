@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class DeliveryLogin extends StatefulWidget {
@@ -47,9 +48,17 @@ class _DeliveryLoginState extends State<DeliveryLogin> {
   );
 } on FirebaseAuthException catch (e) {
   if (e.code == 'user-not-found') {
-    print('No user found for that email.');
+    Fluttertoast.showToast(
+            msg: "Wrong Email Address",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+        );
   } else if (e.code == 'wrong-password') {
-    print('Wrong password provided for that user.');
+   Fluttertoast.showToast(
+            msg: "Wrong Password",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+        );
   }
 }
 }

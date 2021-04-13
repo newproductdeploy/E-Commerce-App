@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:telephony/telephony.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newballariapp/orderpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import "dart:math";
+import 'package:telephony/telephony.dart';
 
 class SelectItem extends StatefulWidget {
 
@@ -47,6 +47,8 @@ class _SelectItemState extends State<SelectItem> {
     String _address = '';
     String _enteritems =''; 
     String _shopname = '';
+
+    String delivername = '';
 
   @override
   void initState(){
@@ -152,13 +154,73 @@ class _SelectItemState extends State<SelectItem> {
               child: Text('Shop 5'),
               value: 'Shop 5',
             ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 6'),
+              value: 'Shop 6',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 7'),
+              value: 'Shop 7',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 8'),
+              value: 'Shop 8',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 9'),
+              value: 'Shop 9',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 10'),
+              value: 'Shop 10',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 11'),
+              value: 'Shop 11',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 12'),
+              value: 'Shop 12',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 13'),
+              value: 'Shop 13',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 14'),
+              value: 'Shop 14',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 15'),
+              value: 'Shop 15',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 16'),
+              value: 'Shop 16',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 17'),
+              value: 'Shop 17',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 18'),
+              value: 'Shop 18',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 19'),
+              value: 'Shop 19',
+            ),
+            DropdownMenuItem<String>(
+              child: Text('Shop 20'),
+              value: 'Shop 20',
+            ),
           ],
           onChanged: (String value) {
             setState(() {
               _shopname = value;
             });
           },
-          hint: Text('Select Shop     '),
+          hint: Text('Select Shop'),
         ),
                             ),
 
@@ -173,14 +235,11 @@ class _SelectItemState extends State<SelectItem> {
                                   ),
                                   style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white),
                                   onPressed: () {
-                                        telephony.sendSmsByDefaultApp(
-                                          to: "9110690815",
-                                          message: "May the force be with you!"
-                                          );
-                                                Fluttertoast.showToast(
-                                                msg: "Order Placed-Thank You",
-                                                toastLength: Toast.LENGTH_SHORT,
-                                                gravity: ToastGravity.CENTER,
+
+                                      Fluttertoast.showToast(
+                                      msg: "Order Placed-Thank You",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
                                           );          
                                     saveDetails();
                                     Navigator.push(context,
@@ -205,10 +264,33 @@ class _SelectItemState extends State<SelectItem> {
     String items = _enteritems;
     String shopname = _shopname;
 
-    
+    var element = getRandomElement(list);
+
+    if (element == 'deliveryboy1@gmail.com'){
+
+          delivername ='9535315502';
+    }else{
+          delivername ='9110690815';
+
+    }
+
+    telephony.sendSms(
+	  to:delivername,
+    message: "Order Arrived"
+	  );
+
+    telephony.sendSms(
+	  to:"7483212243",
+    message: "Order Arrived"
+    );
+    //telephony.sendSms(
+	  //to: "9945160844",
+	  //message: "Order Arrived"
+	  //);
+
     DateTime currentPhoneDate = DateTime.now(); //DateTime
 
-    final DateTime now = DateTime. now();
+    final DateTime now = DateTime.now();
 
     final DateFormat formatter = DateFormat('dd-MM-yyyy');
 
@@ -225,9 +307,10 @@ final String formatted = formatter. format(now);
       'Shopname' : shopname,
       'Timestamp' :myTimeStamp.toString(),
       'OrderedDate' : formatted,
+      'Deliveryboy Number' :delivername,
       };
 
-     var element = getRandomElement(list);
+
     referDatabase.doc('customers').collection(mobileno3).add(customerdetails);
     referDatabase.doc('deliveryboy').collection(element).add(customerdetails);
   }

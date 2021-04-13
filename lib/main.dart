@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newballariapp/aboutpage.dart';
 import 'package:newballariapp/authdelivery.dart';
 import 'package:newballariapp/number.dart';
+import 'package:newballariapp/privacypolicy.dart';
 import 'package:newballariapp/sellerlogin.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -29,7 +30,10 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('#1'),
+        title: Padding(
+          padding: const EdgeInsets.only(left:10),
+          child: Text("It'sForYou"),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right :20),
@@ -57,11 +61,12 @@ class MyHomePage extends StatelessWidget {
           ),
           child:Column(
            mainAxisSize: MainAxisSize.min,
-           children: [Center(
+           children:[
+             Center(
              child:Text('Who are you?',
              style: TextStyle(
                fontSize: 30,
-               height: 7,
+               height: 3,
              ),
              ),
              ),
@@ -128,6 +133,28 @@ class MyHomePage extends StatelessWidget {
                },
                ),
              ),
+              SizedBox(
+               height: 50,
+             ),
+             SizedBox(
+               width: 200,
+               height: 40,
+               child: ElevatedButton(
+                   child: Text('Privacy Policy',
+                   style: TextStyle(
+                     fontSize: 23,
+                   ),
+                   ),
+                   style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                   onPressed: () {
+                     Navigator.push(context,MaterialPageRoute(
+                       builder: (context) => PrivacyPolicy(),
+                 ));
+                 },
+                 ),
+             ),
+             SizedBox(height: 30,),
+             Text('Updates will be coming frequently , Please Co-operate.'),
            ],
           ),
           ),

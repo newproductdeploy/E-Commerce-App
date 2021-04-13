@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:newballariapp/checkorder.dart';
 import 'package:newballariapp/querypage.dart';
 import 'package:newballariapp/selectitem.dart';
@@ -36,7 +37,7 @@ _OrderPageState(this.mobileno5);
                    builder: (context) => QueryPage()),
              );
               }
-            , child: Text('Order Issues ?',style: TextStyle(color: Colors.white,fontSize: 22),
+            , child: Text('Order Issues ?',style: TextStyle(color: Colors.white,fontSize: 20),
             ),
             ),
           )
@@ -125,7 +126,7 @@ _OrderPageState(this.mobileno5);
         child : new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
             return Container(
-              height: 300,
+              height: 330,
               child: new Card(
                 shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -135,15 +136,32 @@ _OrderPageState(this.mobileno5);
               children : <Widget>[
               new ListTile(
                 leading: new Icon(Icons.date_range),
-                title: new Text(document.data()['Shopname'],
-                style: TextStyle(color: Colors.white,fontSize: 20)
+                title: new Text(document.data()['OrderedDate'],
+                style: TextStyle(fontSize: 16)
                 ),
-                tileColor: Colors.grey[700],
+                subtitle: new AutoSizeText('Track Your Order',style: TextStyle(fontSize: 16)),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(right:170),
+                  child: ElevatedButton(
+                   child: Text('Call',
+                   style: TextStyle(
+                     fontSize: 23,
+                   ),
+                   ),
+                   style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                   onPressed: () {
+                     setState(() {
+                          FlutterPhoneDirectCaller.callNumber(Text(document.data()['Deliveryboy Number']).toString().substring(5,16));
+                            });
+               },
+                  ),
+                ),
+                new Divider(color: Colors.green[900],indent: 20.0,endIndent: 20.0),
               new ListTile(
                 isThreeLine: true,
                 leading: new Icon(Icons.shopping_cart),
-                title: new Text(document.data()['OrderedDate']),
+                title: new Text(document.data()['Shopname']),
                 subtitle: new AutoSizeText(document.data()['Items']),
               ),
               ],

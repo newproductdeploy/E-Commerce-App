@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:newballariapp/orderpage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newballariapp/termaandconditions.dart';
 
 class NumberPage extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ String mobileno;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('#1'),
+        title: Text('Ify'),
       ),
       //heading or project name should be written
       body: GestureDetector(
@@ -62,12 +63,12 @@ String mobileno;
            child: AutoSizeText('Enter number to continue',
            style: TextStyle(
              fontSize: 28,
-             height: 7,
+             height: 6,
            ),
            ),
            ),
            Padding(
-             padding: const EdgeInsets.all(15.0),
+             padding: const EdgeInsets.all(16.0),
              child: TextFormField(
                onChanged: (value) {
                    mobileno = value;
@@ -84,12 +85,12 @@ String mobileno;
             height: 35,
            ),
            SizedBox(
-             width: 250,
+             width: 200,
              height: 50,
              child: ElevatedButton(
                child: Text('Proceed',
                style: TextStyle(
-                 fontSize: 23,
+                 fontSize: 25,
                ),
                ),
                style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
@@ -98,6 +99,24 @@ String mobileno;
              },
               ),
            ),
+           SizedBox(height: 40,),
+           SizedBox(
+               width: 270,
+               height: 40,
+               child: TextButton(
+                   child: Text('Terms and Conditions',
+                   style: TextStyle(
+                     fontSize: 23,
+                   ),
+                   ),
+                   style: ElevatedButton.styleFrom(primary: Colors.grey[700],onPrimary: Colors.white,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                   onPressed: () {
+                     Navigator.push(context,MaterialPageRoute(
+                       builder: (context) => TermsAndConditions(),
+                 ));
+                 },
+                 ),
+             ),
          ],
         ),
       ),
