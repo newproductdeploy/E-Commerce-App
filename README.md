@@ -1,4 +1,4 @@
-# E-Commerce App
+# E-Commerce Application
 E-commerce app : ShopNest
 This is an e-commerce app which connects customers to local shops.
 Due to many large super markets most of the local small scale shops have taken a bad hit,
